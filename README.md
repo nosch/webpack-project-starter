@@ -16,8 +16,8 @@ Node.js (install [node.js and npm](http://nodejs.org/download/ "Download node.js
 
 ## Development
 
-    $ npm dev (open: http://localhost:3333 or http://localhost:3333/webpack-dev-server/)
+    $ npm dev #open: http://localhost:3333 or http://localhost:3333/webpack-dev-server/
 
 ## Build
 
-    $ npm prod (see: ./dist folder)
+    $ npm prod #see: ./dist folder
