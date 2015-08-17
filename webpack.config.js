@@ -28,7 +28,7 @@ var config = {
         }, {
             test: /\.jsx?$/, // matches all *.js and *.jsx files
             exclude: /(node_modules|bower_components)/,
-            loader: 'babel-loader'
+            loader: 'babel?optional[]=runtime'
         }]
     },
 
