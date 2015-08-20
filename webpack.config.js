@@ -1,16 +1,22 @@
 'use strict';
 
-var webpack = require("webpack");
+var path = require('path');
+var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require("path");
 
 var sourceDir = path.resolve(__dirname, './src');
 var outputDir = path.resolve(__dirname, './build');
-var appEntry = ['webpack/hot/dev-server', sourceDir + '/index.js'];
 var vendorEntry = ['react'];
+var appEntry = [
+    'webpack-dev-server/client?http://localhost:3333',
+    'webpack/hot/only-dev-server',
+    sourceDir + '/index'
+];
 
 var config = {
+    devtool: 'cheap-module-eval-source-map',
+
     entry: {
         app: appEntry,
         vendor: vendorEntry
@@ -21,22 +27,24 @@ var config = {
         filename: '[name].js'
     },
 
-    module: {
-        loaders: [{
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-        }, {
-            test: /\.jsx?$/, // matches all *.js and *.jsx files
-            exclude: /(node_modules|bower_components)/,
-            loader: 'babel?optional[]=runtime'
-        }]
-    },
-
     resolve: {
         extensions: ['', '.js', '.jsx', '.css']
     },
 
+    module: {
+        loaders: [{
+            test: /\.jsx?$/, // matches all *.js and *.jsx files
+            loaders: ['react-hot', 'babel'],
+            exclude: /node_modules/
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        }]
+    },
+
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
         new ExtractTextPlugin('[name].css'),
         new HtmlWebpackPlugin({

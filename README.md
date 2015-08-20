@@ -12,12 +12,12 @@ Node.js (install [node.js and npm](http://nodejs.org/download/ "Download node.js
 
     $ git clone https://github.com/nosch/webpack-project-starter.git
     $ cd webpack-project-starter
-    $ npm start
+    $ npm install
 
 ## Development
 
-    $ npm run dev #open: http://localhost:3333 or http://localhost:3333/webpack-dev-server/
+    $ npm start #open: http://localhost:3333
 
-## Build
+## Release
 
-    $ npm run prod #see: ./dist folder
+    $ npm run dist #see: ./dist folder
